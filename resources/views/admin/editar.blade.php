@@ -90,26 +90,29 @@
                 <a href="{{ route('admin.painel') }}" class="btn btn-light">Voltar</a>
             </div>
 
-            <form action="" class="bg-custom rounded col-12 py-3 px-4">
+            <form action="{{ route('users.update', ['user' => $user->id_user ]) }}" class="bg-custom rounded col-12 py-3 px-4">
                 
+                @csrf
+                <input type="hidden" name="_method" value="PUT">
+
                 <div class="mb-3 row">
                     <label for="usuario" class="col-sm-2 col-form-label">Usuário:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control bg-dark text-light border-dark" id="usuario" placeholder="Ex: Admin" value="Admin">
+                        <input type="text" class="form-control bg-dark text-light border-dark" id="usuario" name="usuario" value="{{ $user->nome }}">
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="email" class="col-sm-2 col-form-label">E-mail:</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control bg-dark text-light border-dark" id="email" placeholder="Ex: admin@kbrtec.com.br" value="admin@kbrtec.com.br">
+                        <input type="email" class="form-control bg-dark text-light border-dark" id="email" name="email" value="{{ $user->email }}">
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control bg-dark text-light border-dark" id="senha">
+                        <input type="password" class="form-control bg-dark text-light border-dark" name="senha" id="senha">
                     </div>
                 </div>
 

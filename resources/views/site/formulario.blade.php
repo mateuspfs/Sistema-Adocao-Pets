@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Montserrat:wght@500&display=swap" rel="stylesheet">
-    <link href="{{ asset('css/style-site..css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style-site.css') }}" rel="stylesheet">
 </head>
 <body>
     <header class="border-bottom-1 shadow py-3">
@@ -30,9 +30,9 @@
 
                 <div class="col-8">
                     <nav class="d-flex gap-4 align-items-center justify-content-end">
-                        <a href="index.html">Home</a>
-                        <a href="quero-adotar.html">Quero Adotar</a>
-                        <a href="../painel/login.html" class="btn btn-custom">Admin</a>
+                        <a href="{{ route('site.index') }}">Home</a>
+                        <a href="{{ route('site.quero-adotar') }}">Quero Adotar</a>
+                        <a href="{{ route('admin.login') }}" class="btn btn-custom">Admin</a>
                     </nav>
                 </div>
             </div>
@@ -42,9 +42,9 @@
     <nav aria-label="breadcrumb" class="p-3 bg-custom-light">
         <div class="container">
             <ol class="breadcrumb m-0">
-                <li class="breadcrumb-item fs-sm"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item fs-sm"><a href="quero-adotar.html">Quero Adotar</a></li>
-                <li class="breadcrumb-item fs-sm"><a href="integra.html">Tini</a></li>
+                <li class="breadcrumb-item fs-sm"><a href="{{ route('site.index') }}">Home</a></li>
+                <li class="breadcrumb-item fs-sm"><a href="{{ route('site.quero-adotar') }}">Quero Adotar</a></li>
+                <li class="breadcrumb-item fs-sm"><a href="{{ route('site.integra') }}">Tini</a></li>
                 <li class="breadcrumb-item active fs-sm" aria-current="page">Formulário de Solicitação</li>
             </ol>
         </div>
@@ -56,7 +56,7 @@
 
             <p class="text-center">Preencha aqui os dados da pessoa interessada em adotar o animal selecionado:</p>
 
-            <form action="" class="bg-custom rounded p-4 mt-4 col-6 mx-auto row">
+            <form action="{{ route('site.formulario') }}" class="bg-custom rounded p-4 mt-4 col-6 mx-auto row">
                 <div class="form-group py-2 col-12">
                     <label for="solicitante" class="text-capitalize text-light">Seu nome:</label>
                     <input type="text" class="form-control" name="solicitante" id="solicitante">

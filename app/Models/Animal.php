@@ -18,11 +18,11 @@ class Animal extends Model
         'idade',
         'peso',
         'sobre',
+        'sexo',
         'endereco',
         'id_status',
         'id_porte',
         'id_sexo',
-        'id_especie',
         'id_raca',
     ];
 
@@ -34,16 +34,6 @@ class Animal extends Model
     public function porte()
     {
         return $this->belongsTo(Porte::class, 'id_porte', 'id_porte');
-    }
-
-    public function sexo()
-    {
-        return $this->belongsTo(Sexo::class, 'id_sexo', 'id_sexo');
-    }
-
-    public function especie()
-    {
-        return $this->belongsTo(Especie::class, 'id_especie', 'id_especie');
     }
 
     public function raca()
