@@ -16,6 +16,5 @@ class User extends Model
         'nome',
         'email',
         'senha',
-        'token_senha',
     ];
 }

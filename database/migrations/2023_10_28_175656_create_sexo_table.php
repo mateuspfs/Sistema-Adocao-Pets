@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('adocao', function (Blueprint $table) {
-            $table->bigIncrements('id_solicitante');
+        Schema::create('sexo', function (Blueprint $table) {
+            $table->bigIncrements('id_sexo');
             $table->string('nome', 100);
-            $table->char('cpf', 11);
-            $table->char('telefone', 13);
-            $table->string('email', 220);
-            $table->date('data_nasc', 220); 
-            $table->unsignedBigInteger('id_animal');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('adocao');
+        Schema::dropIfExists('sexo');
     }
 };

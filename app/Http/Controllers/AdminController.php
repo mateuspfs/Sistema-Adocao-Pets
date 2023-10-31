@@ -11,24 +11,16 @@ class AdminController extends Controller
         return view('admin/login');
     }
 
-    public function cadastrar()
-    {
-        return view('admin/cadastrar');
-    }
-
-    public function editar()
-    {
-        return view('admin/editar');
-    }
-
-    public function painel()
-    {
-        return view('admin/painel');
-    }
-
     public function recuperar_senha()
     {
         return view('admin/recuperar-senha');
     }
+
+    public function listagem_adocao()
+    {
+        return view('admin/listagem_adocao');
+    }
+
+
 }
 

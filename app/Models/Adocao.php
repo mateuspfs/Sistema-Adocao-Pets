@@ -18,6 +18,7 @@ class Adocao extends Model
         'cpf',
         'telefone',
         'email',
+        'data_nasc',
         'id_animal',
     ];
 

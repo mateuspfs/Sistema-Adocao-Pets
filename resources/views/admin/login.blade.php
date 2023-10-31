@@ -22,7 +22,7 @@
                 </div>
     
                 <div class="col-6 d-flex align-items-center p-5">
-                    <form action="{{ route('admin.painel') }}" class="form w-100">
+                    <form action="{{ route('animals.index') }}" class="form w-100">
                         <h2 class="h4 text-light mb-4">Painel Administrativo</h2>
     
                         <div class="row row-gap-3">

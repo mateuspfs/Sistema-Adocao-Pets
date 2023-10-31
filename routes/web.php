@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AnimalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,29 +31,12 @@ Route::get('/integra', [SiteController::class, 'integra'])->name('site.integra')
 
 Route::get('admin/login', [AdminController::class, 'index'])->name('admin.login'); 
 
-Route::get('admin/cadastrar', [AdminController::class, 'cadastrar'])->name('admin.cadastrar');
-
-Route::get('admin/editar', [AdminController::class, 'editar'])->name('admin.editar');
-
-Route::get('admin/painel', [AdminController::class, 'painel'])->name('admin.painel');
-
 Route::get('admin/recuperar-senha', [AdminController::class, 'recuperar_senha'])->name('admin.recuperar-senha');
 
-// Crud Usuario
+Route::get('admin/listagem_adocao', [AdminController::class, 'listagem_adocao'])->name('admin.adocao');
 
-Route::get('users', [UserController::class, 'index'])->name('users.index'); 
+// Crud Animals
 
-Route::get('users/create', [AdminController::class, 'create'])->name('users.create');
+Route::resource('animals', AnimalController::class);
 
-Route::post('users', [UserController::class, 'store'])->name('users.store'); 
-
-Route::get('/users/{user}', [UserController::class, 'show'])->name('admin.show');
-
-Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-
-Route::post('users', [UserController::class, 'store'])->name('users.store'); 
-
-Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-
+// Route::get('/api/get-racas-by-especie/{id_especie}', 'AnimalController@getRacasByEspecie');

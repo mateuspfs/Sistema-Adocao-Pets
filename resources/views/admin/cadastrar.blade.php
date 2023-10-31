@@ -1,6 +1,11 @@
 
 @extends('master');
 
+@if (session()->has('message')) {
+    {{ session()->get('message') }}
+}
+@endif
+
 <!DOCTYPE html>
 <html lang="pt-br" class="h-100">
 <head>
@@ -58,18 +63,22 @@
 
                     <div class="collapse show" id="menu-usuario">
                         <div class="bg-dark d-flex flex-column rounded mx-4 p-2 row-gap-1">
-                            <a href="{{ route('admin.cadastrar') }}" class="submenu-link link-light text-decoration-none rounded p-2 active">
+                            <a href="{{ route('animals.create') }}" class="submenu-link link-light text-decoration-none rounded p-2">
                                 <small class="d-flex justify-content-between align-items-center">
                                     Cadastrar
-                                        
+                                </small>
+                            </a>
+                            <a href="{{ route('animals.index') }}" class="submenu-link link-light text-decoration-none rounded p-2 active">
+                                <small class="d-flex justify-content-between align-items-center">
+                                    Listagem
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                                     </svg>
                                 </small>
                             </a>
-                            <a href="{{ route('admin.painel') }}" class="submenu-link link-light text-decoration-none rounded p-2">
+                            <a href="{{ route('admin.adocao') }}" class="submenu-link link-light text-decoration-none rounded p-2">
                                 <small class="d-flex justify-content-between align-items-center">
-                                    Listagem
+                                    Adoções
                                 </small>
                             </a>
                         </div>
@@ -89,41 +98,92 @@
 
         <main class="col h-100 text-light p-4">
             <div class="d-flex align-items-end justify-content-between mb-4">
-                <h1 class="h3">Cadastrar Usuário</h1>
+                <h1 class="h3">Cadastrar Animal</h1>
 
-                <a href="{{ route('admin.painel') }}" class="btn btn-light">Voltar</a>
+                <a href="{{ route('animals.index') }}" class="btn btn-light">Voltar</a>
             </div>
 
-            <form action="" class="bg-custom rounded col-12 py-3 px-4">
+            <form action="{{ route('animals.store') }}" method="POST" class="bg-custom rounded col-12 py-3 px-4">
+                @csrf
+                <div class="mb-3 row">
+                    <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control bg-dark text-light border-dark" id="nome" name="nome">
+                    </div>
+                </div>
                 
                 <div class="mb-3 row">
-                    <label for="usuario" class="col-sm-2 col-form-label">Usuário:</label>
+                    <label for="idade" class="col-sm-2 col-form-label">Idade:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control bg-dark text-light border-dark" id="usuario" placeholder="Ex: Admin">
+                        <input type="number" class="form-control bg-dark text-light border-dark" id="idade" name="idade">
+                    </div>
+                </div>
+                
+                <div class="mb-3 row">
+                    <label for="peso" class="col-sm-2 col-form-label">Peso:</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control bg-dark text-light border-dark" id="peso" name="peso">
+                    </div>
+                </div>
+                
+                <div class="mb-3 row">
+                    <label for="sobre" class="col-sm-2 col-form-label">Sobre:</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control bg-dark text-light border-dark" id="sobre" name="sobre"></textarea>
+                    </div>
+                </div>
+                
+                <div class="mb-3 row">
+                    <label for="endereco" class="col-sm-2 col-form-label">Endereço:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control bg-dark text-light border-dark" id="endereco" name="endereco">
+                    </div>
+                </div>
+                
+                <div class="mb-3 row">
+                    <label for="id_sexo" class="col-sm-2 col-form-label">Sexo:</label>
+                    <div class="col-sm-10">
+                        <select class="form-select bg-dark text-light border-dark" id="id_sexo" name="id_sexo">
+                            @foreach ($sexos as $sexo)
+                                <option value="{{ $sexo->id_sexo }}">{{ $sexo->nome }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mb-3 row">
+                    <label for="id_porte" class="col-sm-2 col-form-label">Porte:</label>
+                    <div class="col-sm-10">
+                        <select class="form-select bg-dark text-light border-dark" id="id_porte" name="id_porte">
+                            @foreach ($portes as $porte)
+                                <option value="{{ $porte->id_porte }}">{{ $porte->nome }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
-                    <label for="email" class="col-sm-2 col-form-label">E-mail:</label>
+                    <label for="id_especie" class="col-sm-2 col-form-label">Espécie:</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control bg-dark text-light border-dark" id="email" placeholder="Ex: admin@kbrtec.com.br">
+                        <select class="form-select bg-dark text-light border-dark" id="id_especie" name="id_especie">
+                            @foreach ($especies as $especie)
+                                <option value="{{ $especie->id_especie }}">{{ $especie->nome }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
-                    <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
+                    <label for="id_raca" class="col-sm-2 col-form-label">Raça:</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control bg-dark text-light border-dark" id="senha">
+                        <select class="form-select bg-dark text-light border-dark" id="id_raca" name="id_raca">
+                            @foreach ($racas as $raca)
+                            <option value="{{ $raca->id_raca }}">{{ $raca->nome }}</option>
+                        @endforeach
+                        </select>
                     </div>
                 </div>
-
-                <div class="mb-3 row">
-                    <label for="confSenha" class="col-sm-2 col-form-label">Confirmar Senha:</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control bg-dark text-light border-dark" id="confSenha">
-                    </div>
-                </div>
-
+                
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-light">Cadastrar</button>
                 </div>
@@ -140,5 +200,26 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    {{-- <script>
+        document.getElementById('id_especie').addEventListener('change', function () {
+            var idEspecie = this.value;
+
+            // Realizar uma solicitação AJAX para obter as raças associadas à espécie selecionada
+            fetch('/api/get-racas-by-especie/' + idEspecie)
+                .then(response => response.json())
+                .then(data => {
+                    var idRacaSelect = document.getElementById('id_raca');
+                    idRacaSelect.innerHTML = '<option value=""></option>'; // Limpa as opções atuais
+
+                    data.forEach(function (raca) {
+                        var option = document.createElement('option');
+                        option.value = raca.id_raca;
+                        option.text = raca.nome;
+                        idRacaSelect.appendChild(option);
+                    });
+                });
+        });
+    </script> --}}
 </body>
 </html>

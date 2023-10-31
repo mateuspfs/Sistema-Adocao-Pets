@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('peso');
             $table->string('sobre', 220);
             $table->string('endereco', 220);
-            $table->string('sexo', 220);
+            $table->unsignedBigInteger('id_sexo');
             $table->unsignedBigInteger('id_status');
             $table->unsignedBigInteger('id_porte');
             $table->unsignedBigInteger('id_raca');

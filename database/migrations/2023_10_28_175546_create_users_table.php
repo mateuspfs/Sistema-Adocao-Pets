@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('nome', 100);
             $table->string('email', 220);
             $table->string('senha', 220);
-            $table->string('token_senha', 220);
             $table->timestamps();
         });
     }
