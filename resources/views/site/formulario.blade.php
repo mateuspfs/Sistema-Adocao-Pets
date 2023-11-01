@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-4">
-                    <a href="{{ route('site.index') }}" title="KBR TEC" class="d-inline-block">
+                    <a href="{{ route('site.home') }}" title="KBR TEC" class="d-inline-block">
                         <h1>
                             <img src="user/img/logo.webp" alt="KBR TEC" width="150">
                         </h1>
@@ -30,8 +30,8 @@
 
                 <div class="col-8">
                     <nav class="d-flex gap-4 align-items-center justify-content-end">
-                        <a href="{{ route('site.index') }}">Home</a>
-                        <a href="{{ route('site.quero-adotar') }}">Quero Adotar</a>
+                        <a href="{{ route('site.home') }}">Home</a>
+                        <a href="{{ route('site.index') }}">Quero Adotar</a>
                         <a href="{{ route('admin.login') }}" class="btn btn-custom">Admin</a>
                     </nav>
                 </div>
@@ -42,9 +42,9 @@
     <nav aria-label="breadcrumb" class="p-3 bg-custom-light">
         <div class="container">
             <ol class="breadcrumb m-0">
-                <li class="breadcrumb-item fs-sm"><a href="{{ route('site.index') }}">Home</a></li>
-                <li class="breadcrumb-item fs-sm"><a href="{{ route('site.quero-adotar') }}">Quero Adotar</a></li>
-                <li class="breadcrumb-item fs-sm"><a href="{{ route('site.integra') }}">Tini</a></li>
+                <li class="breadcrumb-item fs-sm"><a href="{{ route('site.home') }}">Home</a></li>
+                <li class="breadcrumb-item fs-sm"><a href="{{ route('site.index') }}">Quero Adotar</a></li>
+                <li class="breadcrumb-item fs-sm"><a href="{{ route('site.integra', $animal->id_animal) }}">{{ $animal->nome }}</a></li>
                 <li class="breadcrumb-item active fs-sm" aria-current="page">Formulário de Solicitação</li>
             </ol>
         </div>
@@ -56,7 +56,7 @@
 
             <p class="text-center">Preencha aqui os dados da pessoa interessada em adotar o animal selecionado:</p>
 
-            <form action="{{ route('site.formulario') }}" class="bg-custom rounded p-4 mt-4 col-6 mx-auto row">
+            <form action="{{ route('site.formulario', $animal->id_animal) }}" class="bg-custom rounded p-4 mt-4 col-6 mx-auto row">
                 <div class="form-group py-2 col-12">
                     <label for="solicitante" class="text-capitalize text-light">Seu nome:</label>
                     <input type="text" class="form-control" name="solicitante" id="solicitante">
@@ -64,7 +64,7 @@
 
                 <div class="form-group py-2 col-12">
                     <label for="animal" class="text-capitalize text-light">Nome <span class="text-lowercase">do</span> animal:</label>
-                    <input type="text" class="form-control" name="animal" id="animal" value="Tini" disabled>
+                    <input type="text" class="form-control" name="animal" id="animal" value="{{ $animal->nome }}" readonly>
                 </div>
 
                 <div class="form-group py-2 col-6">

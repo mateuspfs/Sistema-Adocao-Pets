@@ -22,7 +22,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-4">
-                    <a href="{{ route('site.index') }}" title="KBR TEC" class="d-inline-block">
+                    <a href="{{ route('site.home') }}" title="KBR TEC" class="d-inline-block">
                         <h1>
                             <img src="user/img/logo.webp" alt="KBR TEC" width="150">
                         </h1>
@@ -31,8 +31,8 @@
 
                 <div class="col-8">
                     <nav class="d-flex gap-4 align-items-center justify-content-end">
-                        <a href="{{ route('site.index') }}">Home</a>
-                        <a href="{{ route('site.quero-adotar') }}">Quero Adotar</a>
+                        <a href="{{ route('site.home') }}">Home</a>
+                        <a href="{{ route('site.index') }}">Quero Adotar</a>
                         <a href="{{ route('admin.login') }}" class="btn btn-custom">Admin</a>
                     <nav>
                 </div>
@@ -112,365 +112,48 @@
 
                     <div class="row row-gap-4 mt-4">
 
-                        <div class="col-xxl-3 col-4">
-                            <div class="card rounded overflow-hidden">
-                                <a href="{{ route('site.integra') }}">
-                                    <img src="user/img/bili.webp" alt="" class="w-100 object-fit-cover" height="320">
-                                </a>
-
-                                <div class="p-3">
-                                    <p class="m-0 fs-sm">Cód. 675092</p>
-
-                                    <div class="d-flex align-items-center gap-2 mt-2 py-2">
-                                        <h3 class="h4 m-0">Bili</h3>
-                                        
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
-                                            <path fill="#006AB0" fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
-                                        </svg>
-                                    </div>
-
-                                    <p class="mb-4 fs-md">Petz Casa Grande, Diadema - SP</p>
-
-                                    <a href="{{ route('site.integra') }}" class="btn btn-custom-2 d-flex align-items-center justify-content-center gap-2 w-100">
-                                        Quero Adotar
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                        </svg>
+                        @foreach ($animals as $animal)
+                            
+                            <div class="col-xxl-3 col-4">
+                                <div class="card rounded overflow-hidden">
+                                    <a href="{{ route('site.integra', $animal->id_animal) }}">
+                                        <img src="user/img/bili.webp" alt="" class="w-100 object-fit-cover" height="320">
                                     </a>
+
+                                    <div class="p-3">
+                                        <p class="m-0 fs-sm">{{ $animal->id_animal }}</p>
+
+                                        <div class="d-flex align-items-center gap-2 mt-2 py-2">
+                                            <h3 class="h4 m-0">{{ $animal->nome }}</h3>
+                                            
+                                            @if ($animal->id_sexo === 2 ) 
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
+                                                    <path fill="#006AB0" fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                                                </svg>
+                                            @else 
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
+                                                    <path fill="#FF7373" fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
+                                                </svg>
+                                            
+                                            @endif
+
+                                        </div>
+
+                                        <p class="mb-4 fs-md">{{ $animal->endereco }}</p>
+
+                                        <a href="{{ route('site.integra', $animal->id_animal) }}" class="btn btn-custom-2 d-flex align-items-center justify-content-center gap-2 w-100">
+                                            Quero Adotar
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-xxl-3 col-4">
-                            <div class="card rounded overflow-hidden">
-                                <a href="{{ route('site.integra') }}">
-                                    <img src="user/img/tini.webp" alt="" class="w-100 object-fit-cover" height="320">
-                                </a>
+                        @endforeach
 
-                                <div class="p-3">
-                                    <p class="m-0 fs-sm">Cód. 873012</p>
-
-                                    <div class="d-flex align-items-center gap-2 mt-2 py-2">
-                                        <h3 class="h4 m-0">Tini</h3>
-                                        
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
-                                            <path fill="#FF7373" fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
-                                        </svg>
-                                    </div>
-
-                                    <p class="mb-4 fs-md">Petz Bom Retiro, Curitiba - PR</p>
-
-                                    <a href="{{ route('site.integra') }}" class="btn btn-custom-2 d-flex align-items-center justify-content-center gap-2 w-100">
-                                        Quero Adotar
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-3 col-4">
-                            <div class="card rounded overflow-hidden">
-                                <a href="{{ route('site.integra') }}">
-                                    <img src="user/img/luna.webp" alt="" class="w-100 object-fit-cover" height="320">
-                                </a>
-
-                                <div class="p-3">
-                                    <p class="m-0 fs-sm">Cód. 309123</p>
-
-                                    <div class="d-flex align-items-center gap-2 mt-2 py-2">
-                                        <h3 class="h4 m-0">Luna</h3>
-                                        
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
-                                            <path fill="#FF7373" fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
-                                        </svg>
-                                    </div>
-
-                                    <p class="mb-4 fs-md">Petz Vila Gomes, São Paulo - SP</p>
-
-                                    <a href="{{ route('site.integra') }}" class="btn btn-custom-2 d-flex align-items-center justify-content-center gap-2 w-100">
-                                        Quero Adotar
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-3 col-4">
-                            <div class="card rounded overflow-hidden">
-                                <a href="{{ route('site.integra') }}">
-                                    <img src="user/img/bird.webp" alt="" class="w-100 object-fit-cover" height="320">
-                                </a>
-
-                                <div class="p-3">
-                                    <p class="m-0 fs-sm">Cód. 129381</p>
-
-                                    <div class="d-flex align-items-center gap-2 mt-2 py-2">
-                                        <h3 class="h4 m-0">Bird</h3>
-                                        
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
-                                            <path fill="#006AB0" fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
-                                        </svg>
-                                    </div>
-
-                                    <p class="mb-4 fs-md">Petz Centro, Teresina - PI</p>
-
-                                    <a href="{{ route('site.integra') }}" class="btn btn-custom-2 d-flex align-items-center justify-content-center gap-2 w-100">
-                                        Quero Adotar
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-xxl-3 col-4">
-                            <div class="card rounded overflow-hidden">
-                                <a href="{{ route('site.integra') }}">
-                                    <img src="user/img/suzy.webp" alt="" class="w-100 object-fit-cover" height="320">
-                                </a>
-
-                                <div class="p-3">
-                                    <p class="m-0 fs-sm">Cód. 3123519</p>
-
-                                    <div class="d-flex align-items-center gap-2 mt-2 py-2">
-                                        <h3 class="h4 m-0">Suzy</h3>
-                                        
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
-                                            <path fill="#FF7373" fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
-                                        </svg>
-                                    </div>
-
-                                    <p class="mb-4 fs-md">Petz Parque Imperial, São Paulo - SP</p>
-
-                                    <a href="{{ route('site.integra') }}" class="btn btn-custom-2 d-flex align-items-center justify-content-center gap-2 w-100">
-                                        Quero Adotar
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-3 col-4">
-                            <div class="card rounded overflow-hidden">
-                                <a href="{{ route('site.integra') }}">
-                                    <img src="user/img/teco.webp" alt="" class="w-100 object-fit-cover" height="320">
-                                </a>
-
-                                <div class="p-3">
-                                    <p class="m-0 fs-sm">Cód. 231042</p>
-
-                                    <div class="d-flex align-items-center gap-2 mt-2 py-2">
-                                        <h3 class="h4 m-0">Teco</h3>
-                                        
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
-                                            <path fill="#006AB0" fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
-                                        </svg>
-                                    </div>
-
-                                    <p class="mb-4 fs-md">Petz Centro, Teresina - PI</p>
-
-                                    <a href="{{ route('site.integra') }}" class="btn btn-custom-2 d-flex align-items-center justify-content-center gap-2 w-100">
-                                        Quero Adotar
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-3 col-4">
-                            <div class="card rounded overflow-hidden">
-                                <a href="{{ route('site.integra') }}">
-                                    <img src="user/img/bruce.webp" alt="" class="w-100 object-fit-cover" height="320">
-                                </a>
-
-                                <div class="p-3">
-                                    <p class="m-0 fs-sm">Cód. 232093</p>
-
-                                    <div class="d-flex align-items-center gap-2 mt-2 py-2">
-                                        <h3 class="h4 m-0">Bruce</h3>
-                                        
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
-                                            <path fill="#006AB0" fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
-                                        </svg>
-                                    </div>
-
-                                    <p class="mb-4 fs-md">Petz Buritis, Belo Horizonte - MG</p>
-
-                                    <a href="{{ route('site.integra') }}" class="btn btn-custom-2 d-flex align-items-center justify-content-center gap-2 w-100">
-                                        Quero Adotar
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-3 col-4">
-                            <div class="card rounded overflow-hidden">
-                                <a href="{{ route('site.integra') }}">
-                                    <img src="user/img/maya.webp" alt="" class="w-100 object-fit-cover" height="320">
-                                </a>
-
-                                <div class="p-3">
-                                    <p class="m-0 fs-sm">Cód. 231032</p>
-
-                                    <div class="d-flex align-items-center gap-2 mt-2 py-2">
-                                        <h3 class="h4 m-0">Maya</h3>
-                                        
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
-                                            <path fill="#FF7373" fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
-                                        </svg>
-                                    </div>
-
-                                    <p class="mb-4 fs-md">Petz Vila Joana, Jundiaí - SP</p>
-
-                                    <a href="{{ route('site.integra') }}" class="btn btn-custom-2 d-flex align-items-center justify-content-center gap-2 w-100">
-                                        Quero Adotar
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-xxl-3 col-4">
-                            <div class="card rounded overflow-hidden">
-                                <a href="{{ route('site.integra') }}">
-                                    <img src="user/img/bela.webp" alt="" class="w-100 object-fit-cover" height="320">
-                                </a>
-    
-                                <div class="p-3">
-                                    <p class="m-0 fs-sm">Cód. 412398</p>
-    
-                                    <div class="d-flex align-items-center gap-2 mt-2 py-2">
-                                        <h3 class="h4 m-0">Bela</h3>
-                                        
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
-                                            <path fill="#FF7373" fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
-                                        </svg>
-                                    </div>
-    
-                                    <p class="mb-4 fs-md">Petz Guará I, Brasília - DF</p>
-    
-                                    <a href="{{ route('site.integra') }}" class="btn btn-custom-2 d-flex align-items-center justify-content-center gap-2 w-100">
-                                        Quero Adotar
-    
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-3 col-4">
-                            <div class="card rounded overflow-hidden">
-                                <a href="{{ route('site.integra') }}">
-                                    <img src="user/img/gaia.webp" alt="" class="w-100 object-fit-cover" height="320">
-                                </a>
-    
-                                <div class="p-3">
-                                    <p class="m-0 fs-sm">Cód. 230131</p>
-    
-                                    <div class="d-flex align-items-center gap-2 mt-2 py-2">
-                                        <h3 class="h4 m-0">Gaia</h3>
-                                        
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
-                                            <path fill="#FF7373" fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
-                                        </svg>
-                                    </div>
-    
-                                    <p class="mb-4 fs-md">Petz Igrejinha, Capanema - PA</p>
-    
-                                    <a href="{{ route('site.integra') }}" class="btn btn-custom-2 d-flex align-items-center justify-content-center gap-2 w-100">
-                                        Quero Adotar
-    
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-3 col-4">
-                            <div class="card rounded overflow-hidden">
-                                <a href="{{ route('site.integra') }}">
-                                    <img src="user/img/koda.webp" alt="" class="w-100 object-fit-cover" height="320">
-                                </a>
-    
-                                <div class="p-3">
-                                    <p class="m-0 fs-sm">Cód. 005612</p>
-    
-                                    <div class="d-flex align-items-center gap-2 mt-2 py-2">
-                                        <h3 class="h4 m-0">Koda</h3>
-                                        
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
-                                            <path fill="#006AB0" fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
-                                        </svg>
-                                    </div>
-    
-                                    <p class="mb-4 fs-md">Petz Centro, Teresina - PI</p>
-    
-                                    <a href="{{ route('site.integra') }}" class="btn btn-custom-2 d-flex align-items-center justify-content-center gap-2 w-100">
-                                        Quero Adotar
-    
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-3 col-4">
-                            <div class="card rounded overflow-hidden">
-                                <a href="{{ route('site.integra') }}">
-                                    <img src="user/img/luke.webp" alt="" class="w-100 object-fit-cover" height="320">
-                                </a>
-    
-                                <div class="p-3">
-                                    <p class="m-0 fs-sm">Cód. 093132</p>
-    
-                                    <div class="d-flex align-items-center gap-2 mt-2 py-2">
-                                        <h3 class="h4 m-0">Luke</h3>
-                                        
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
-                                            <path fill="#006AB0" fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
-                                        </svg>
-                                    </div>
-    
-                                    <p class="mb-4 fs-md">Petz Warta, Londrina - PR</p>
-    
-                                    <a href="{{ route('site.integra') }}" class="btn btn-custom-2 d-flex align-items-center justify-content-center gap-2 w-100">
-                                        Quero Adotar
-    
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <nav class="mt-5">

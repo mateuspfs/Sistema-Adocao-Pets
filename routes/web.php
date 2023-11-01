@@ -19,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 
 // Site
 
-Route::get('/', [SiteController::class, 'index'])->name('site.index'); 
+Route::get('/', [SiteController::class, 'home'])->name('site.home'); 
 
-Route::get('/quero-adotar', [SiteController::class, 'quero_adotar'])->name('site.quero-adotar');
+Route::get('/quero-adotar', [SiteController::class, 'index'])->name('site.index');
 
-Route::get('/formulario', [SiteController::class, 'formulario'])->name('site.formulario');
+Route::get('/formulario/{id_animal}', [SiteController::class, 'formulario'])->name('site.formulario');
 
-Route::get('/integra', [SiteController::class, 'integra'])->name('site.integra');
+Route::get('/integra/{id_animal}', [SiteController::class, 'show'])->name('site.integra');
 
 // Admin
 

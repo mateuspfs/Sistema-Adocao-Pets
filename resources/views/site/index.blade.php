@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-4">
-                    <a href="{{ route('site.index') }}" title="KBR TEC" class="d-inline-block">
+                    <a href="{{ route('site.home') }}" title="KBR TEC" class="d-inline-block">
                         <h1>
                             <img src="user/img/logo.webp" alt="KBR TEC" width="150">
                         </h1>
@@ -30,8 +30,8 @@
 
                 <div class="col-8">
                     <nav class="d-flex gap-4 align-items-center justify-content-end">
-                        <a href="{{ route('site.index') }}">Home</a>
-                        <a href="{{ route('site.quero-adotar') }}">Quero Adotar</a>
+                        <a href="{{ route('site.home') }}">Home</a>
+                        <a href="{{ route('site.index') }}">Quero Adotar</a>
                         <a href="{{ route('admin.login') }}" class="btn btn-custom">Admin</a>
                     </nav>
                 </div>
@@ -51,7 +51,7 @@
                         por um pet
                     </h2>
     
-                    <a href="{{ route('site.quero-adotar') }}" class="btn btn-custom d-flex align-items-center gap-3 mt-4 px-4 text">
+                    <a href="{{ route('site.index') }}" class="btn btn-custom d-flex align-items-center gap-3 mt-4 px-4 text">
                         Buscar um PET
 
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">

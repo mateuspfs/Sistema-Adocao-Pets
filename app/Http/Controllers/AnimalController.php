@@ -48,10 +48,13 @@ class AnimalController extends Controller
     {
         $data = $request->except('_token');
         
+        $idade = $data['idade'] . ' ' . $data['unidade_tempo']; 
+        $peso = $data['peso'] . ' ' . $data['unidade_medida'];
+
         $create = $this->animal->create([
             'nome' => $data['nome'],
-            'idade' => $data['idade'],
-            'peso' => $data['peso'],
+            'idade' => $idade,
+            'peso' => $peso,
             'sobre' => $data['sobre'],
             'endereco' => $data['endereco'],
             'id_sexo' => $data['id_sexo'],
