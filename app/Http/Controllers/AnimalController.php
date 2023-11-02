@@ -19,18 +19,12 @@ class AnimalController extends Controller
         $this->animal = new Animal();
     }
     
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $animals = $this->animal->all();
         return view('admin/painel', ['animals' => $animals]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $portes = Porte::all();
@@ -41,21 +35,21 @@ class AnimalController extends Controller
         return view('admin/cadastrar', compact('portes', 'especies', 'racas', 'sexos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
+        // Recuperar dados do formulario, exceto os que estão em except
         $data = $request->except('_token');
         
-        $idade = $data['idade'] . ' ' . $data['unidade_tempo']; 
-        $peso = $data['peso'] . ' ' . $data['unidade_medida'];
+        // // Juntar o valor inteiro e sua unidade para salvar no banco
+        $data['idade'] = $data['idade'] . ' ' . $data['unidade_tempo']; 
+        $data['peso'] = $data['peso'] . ' ' . $data['unidade_medida'];
 
+        // Fazer o create
         $create = $this->animal->create([
             'nome' => $data['nome'],
-            'idade' => $idade,
-            'peso' => $peso,
-            'sobre' => $data['sobre'],
+            'idade' => $data['idade'],
+            'peso' => $data['peso'],
+            'sobre' => strip_tags($data['sobre']),
             'endereco' => $data['endereco'],
             'id_sexo' => $data['id_sexo'],
             'id_porte' => $data['id_porte'],
@@ -71,44 +65,49 @@ class AnimalController extends Controller
         return redirect()->back()->with('Error', 'Falha na atualização');   
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(animal $animal)
     {
         return view('site/integra', ['animal' => $animal->id_animal ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(animal $animal)
     {
         $portes = Porte::all();
         $especies = Especie::all();
         $sexos = Sexo::all();
         $racas = Raca::all();
+        $statuss = Status::all();
 
-        return view('admin/editar', ['animal' => $animal], compact('portes', 'especies', 'racas', 'sexos'));
+        return view('admin/editar', ['animal' => $animal], compact('portes', 'especies', 'racas', 'sexos', 'statuss'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id_animal)
     {
-        $update = $this->animal->where('id_animal', $id_animal)->update($request->except(['_token', '_method', 'id_especie']));
+        // Recuperar dados do formulario, exceto os que estão em except
+        $data = $request->except(['_token', '_method', 'id_especie']);
 
+        // Aplicar strip_tags() ao campo "sobre"
+        $data['sobre'] = strip_tags($data['sobre']);
+
+        // Juntar o valor inteiro e sua unidade para salvar no banco
+        $data['idade'] = $data['idade'] . " " . $data['unidade_tempo'];
+        $data['peso'] = $data['peso'] . " " . $data['unidade_medida'];
+
+        // Remover do array antes do update
+        unset($data['unidade_tempo']);
+        unset($data['unidade_medida']);
+
+        // var_dump($data);
+        // Realizar o update
+        $update = $this->animal->where('id_animal', $id_animal)->update($data);
+
+        // Se atualizar com sucesso retorna a página com uma alert 
         if ($update) {
             return redirect()->back()->with('Sucesso', 'Atualização bem-sucedida');
         }
-
         return redirect()->back()->with('Error', 'Falha na atualização');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id_animal)
     {
         $this->animal->where('id_animal', $id_animal)->delete();

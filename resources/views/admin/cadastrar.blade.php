@@ -114,15 +114,29 @@
                 
                 <div class="mb-3 row">
                     <label for="idade" class="col-sm-2 col-form-label">Idade:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <input type="number" class="form-control bg-dark text-light border-dark" id="idade" name="idade">
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-select bg-dark text-light border-dark" id="unidade_tempo" name="unidade_tempo">
+                            <option value="Dias">Dias</option>
+                            <option value="Semanas">Semanas</option>
+                            <option value="Meses">Meses</option>
+                            <option value="Anos">Anos</option>
+                        </select>
                     </div>
                 </div>
                 
                 <div class="mb-3 row">
                     <label for="peso" class="col-sm-2 col-form-label">Peso:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <input type="number" class="form-control bg-dark text-light border-dark" id="peso" name="peso">
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-select bg-dark text-light border-dark" id="unidade_medida" name="unidade_medida">
+                            <option value="Gramas">Gramas</option>
+                            <option value="Kg">Kg</option>
+                        </select>
                     </div>
                 </div>
                 
@@ -200,7 +214,16 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-
+    <<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('sobre', {
+        language: 'pt-br', // Defina o idioma (opcional)
+        contentsLangDirection: 'ltr', // Direção do idioma (ltr para esquerda para direita)
+        fullPage: true, // Certifique-se de que o CKEditor funcione com a página inteira
+        entities: false, // Evita que o CKEditor converta entidades HTML
+    });
+    </script>
+    
     {{-- <script>
         document.getElementById('id_especie').addEventListener('change', function () {
             var idEspecie = this.value;
@@ -221,5 +244,6 @@
                 });
         });
     </script> --}}
+
 </body>
 </html>

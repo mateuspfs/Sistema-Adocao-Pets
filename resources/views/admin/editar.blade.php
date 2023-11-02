@@ -124,15 +124,29 @@
                 
                 <div class="mb-3 row">
                     <label for="idade" class="col-sm-2 col-form-label">Idade:</label>
-                    <div class="col-sm-10">
-                        <input type="number" class="form-control bg-dark text-light border-dark" id="idade" name="idade" value="{{ $animal->idade }}">
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control bg-dark text-light border-dark" id="idade" name="idade" value="{{ getNumeroIdade($animal->idade) }}">
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-select bg-dark text-light border-dark" id="unidade_tempo" name="unidade_tempo">
+                            <option value="Dias" {{ getUnidadeIdade($animal->idade) === "Dias" ? 'selected' : '' }} >Dias</option>
+                            <option value="Semanas" {{ getUnidadeIdade($animal->idade) === "Semanas" ? 'selected' : '' }} >Semanas</option>
+                            <option value="Meses" {{ getUnidadeIdade($animal->idade) === "Meses" ? 'selected' : '' }} >Meses</option>
+                            <option value="Anos" {{ getUnidadeIdade($animal->idade) === "Anos" ? 'selected' : '' }} >Anos</option>
+                        </select>
                     </div>
                 </div>
                 
                 <div class="mb-3 row">
                     <label for="peso" class="col-sm-2 col-form-label">Peso:</label>
-                    <div class="col-sm-10">
-                        <input type="number" class="form-control bg-dark text-light border-dark" id="peso" name="peso" value="{{ $animal->peso }}">
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control bg-dark text-light border-dark" id="peso" name="peso" value="{{ getNumeroPeso($animal->peso) }}">
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-select bg-dark text-light border-dark" id="unidade_medida" name="unidade_medida">
+                            <option value="Gramas" {{ getUnidadePeso($animal->peso) === "Gramas" ? 'selected' : '' }} >Gramas</option>
+                            <option value="Kg" {{ getUnidadePeso($animal->peso) === "Kg" ? 'selected' : '' }}>Kg</option>
+                        </select>
                     </div>
                 </div>
                 
@@ -210,6 +224,21 @@
                     </div>
                 </div>
 
+                <div class="mb-3 row">
+                    <label for="id_raca" class="col-sm-2 col-form-label">Status:</label>
+                    <div class="col-sm-10">
+                        <select class="form-select bg-dark text-light border-dark" id="id_status" name="id_status">
+                            @foreach ($statuss as $status)
+                                <option value="{{ $status->id_status }}"
+                                    @if ($status->id_status === $animal->id_status)
+                                    selected
+                                    @endif
+                                >{{ $status->nome }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-light">Salvar</button>
                 </div>
@@ -226,5 +255,14 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('sobre', {
+        language: 'pt-br', // Definir idioma
+        contentsLangDirection: 'ltr', // Direção do idioma (ltr para esquerda para direita)
+        fullPage: true, // habilitar funcionar página inteira
+        entities: false, // Evita que o CKEditor converta entidades HTML
+        });
+    </script>
 </body>
 </html>

@@ -61,6 +61,30 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Charset Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Set the default character encoding for your application. This value is used
+    | in various parts of the application, such as sending email. You should set
+    | this value to a suitable character encoding for your application.
+    |
+    */
+    'charset' => 'utf-8',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Collation Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Set the default collation for your application. This value determines the
+    | "sorting order" of your database's queries. You should set this value to a
+    | suitable collation for your application.
+    |
+    */
+    'collation' => 'utf8_unicode_ci',
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |
@@ -69,7 +93,7 @@ return [
     | ahead and set this to a sensible default for you out of the box.
     |
     */
-
+    
     'timezone' => 'UTC',
 
     /*
