@@ -260,7 +260,7 @@
         CKEDITOR.replace('sobre', {
         language: 'pt-br', // Definir idioma
         contentsLangDirection: 'ltr', // Direção do idioma (ltr para esquerda para direita)
-        fullPage: true, // habilitar funcionar página inteira
+        fullPage: true, // Habilitar funcionar página inteira
         entities: false, // Evita que o CKEditor converta entidades HTML
         });
     </script>

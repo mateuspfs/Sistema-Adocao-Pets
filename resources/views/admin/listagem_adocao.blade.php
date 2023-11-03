@@ -174,12 +174,12 @@
                     </thead>
                     <tbody>
                         <tr>
-                            {{-- @foreach ($users as $user)
-                            --}}
 
-                            <td>leandro</td>
-                            <td>leadnro@email</td>
-                            <td>Tini</td>
+                            @foreach ($adocoes as $adocao)
+                           
+                            <td>{{ $adocao->nome_solicitante}}</td>
+                            <td>{{ $adocao->email_solicitante}}</td>
+                            <td><a style="color: rgb(64, 129, 48);" href="{{ route('site.integra', $adocao->id_animal) }}"> {{ $adocao->nome_animal }} </a></td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <button type="button" class="btn btn-light d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -212,19 +212,33 @@
                         </tr>
                         <tr>
                             
-                        {{-- @endforeach --}}
+                        @endforeach
             
                     </tbody>
                 </table>
             </div>
 
-            <nav aria-label="navigation">
+            <nav aria-label="navigation" class="mt-5">
                 <ul class="pagination justify-content-end pt-4 pb-2">
-                    <li class="page-item"><a class="page-link bg-custom border-dark link-light" href="#">Anterior</a></li>
-                    <li class="page-item"><a class="page-link bg-custom border-dark link-light" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link bg-custom border-dark link-light" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link bg-custom border-dark link-light" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link bg-custom border-dark link-light" href="#">Próximo</a></li>
+                    <li class="page-item @if ($adocoes->onFirstPage()) disabled @endif">
+                        <a class="page-link link bg-custom border-dark link-light" href="{{ $adocoes->previousPageUrl() }}" aria-label="Anterior">
+                            Anterior
+                        </a>
+                    </li>
+                    @if ($adocoes->hasPages())
+                        @foreach (range(1, $adocoes->lastPage()) as $page)
+                            <li class="page-item @if ($page === $adocoes->currentPage()) active @endif">
+                                <a class="page-link link  border-dark link-light" href="{{ $adocoes->url($page) }}">
+                                    {{ $page }}
+                                </a>
+                            </li>
+                        @endforeach
+                    @endif
+                    <li class="page-item @if (!$adocoes->hasMorePages()) disabled @endif">
+                        <a class="page-link link bg-custom border-dark link-light" href="{{ $adocoes->nextPageUrl() }}" aria-label="Próximo">
+                            Próximo
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </main>

@@ -3,13 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
-use App\Models\Especie;
-use App\Models\Porte;
-use App\Models\Raca;
-use App\Models\Sexo;
-use Illuminate\Http\Request;
-
-use function Laravel\Prompts\select;
 
 class SiteController extends Controller
 {
@@ -34,7 +27,7 @@ class SiteController extends Controller
         $animals = Animal::where('id_status', 1)
                         ->orderBy('created_at', 'desc') // ordenar por ordem de cadastro, descrecente 
                         ->orderBy('id_animal', 'desc') // para desempate, ordenar por ordem da id, sendo o último cadastrado em primeiro
-                        ->get();
+                        ->paginate(9);
 
         return view('site/quero-adotar', ['animals' => $animals]);
     }

@@ -29,3 +29,13 @@
 .page-link.bg-custom:hover, .page-link.bg-custom:focus{
     color: #000 !important;
 }
+
+.link {
+    color: white !important;  
+    background-color: #141618!important;
+}
+
+.link:hover {
+    color: rgb(215, 206, 206) !important;  
+    background-color: #c9ced3!important;
+}

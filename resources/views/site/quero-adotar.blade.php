@@ -158,13 +158,27 @@
 
                     <nav class="mt-5">
                         <ul class="pagination justify-content-center">
-                            <li class="page-item"><a class="page-link btn-custom" href="#">Anterior</a></li>
-                            <li class="page-item"><a class="page-link btn-custom" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link btn-custom" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link btn-custom" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link btn-custom" href="#">Próximo</a></li>
+                            <li class="page-item @if ($animals->onFirstPage()) disabled @endif">
+                                <a class="page-link btn-custom" href="{{ $animals->previousPageUrl() }}" aria-label="Anterior">
+                                    Anterior
+                                </a>
+                            </li>
+                            @if ($animals->hasPages())
+                                @foreach (range(1, $animals->lastPage()) as $page)
+                                    <li class="page-item @if ($page === $animals->currentPage()) active @endif">
+                                        <a class="page-link btn-custom" href="{{ $animals->url($page) }}">
+                                            {{ $page }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endif
+                            <li class="page-item @if (!$animals->hasMorePages()) disabled @endif">
+                                <a class="page-link btn-custom" href="{{ $animals->nextPageUrl() }}" aria-label="Próximo">
+                                    Próximo
+                                </a>
+                            </li>
                         </ul>
-                    </nav>
+                    </nav>                      
                 </main>
             </div>
         </div>

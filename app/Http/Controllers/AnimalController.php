@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Adocao;
 use App\Models\Animal;
 use App\Models\Especie;
 use App\Models\Porte;
@@ -21,7 +22,14 @@ class AnimalController extends Controller
     
     public function index()
     {
-        $animals = $this->animal->all();
+        $animals = Animal::select(
+            'animais.id_animal as id_animal',
+            'animais.nome as nome',
+            'status.nome as status',
+        )
+        ->join('status', 'animais.id_status', '=', 'status.id_status')
+        ->paginate(10);
+
         return view('admin/painel', ['animals' => $animals]);
     }
 
@@ -113,6 +121,21 @@ class AnimalController extends Controller
         $this->animal->where('id_animal', $id_animal)->delete();
 
         return redirect()->route('animals.index');
+    }
+
+    public function showAdocao()
+    {    
+        $adocoes = Adocao::select(
+            'adocao.id_solicitante as id_solicitante',
+            'adocao.nome as nome_solicitante',
+            'adocao.email as email_solicitante',
+            'adocao.id_animal as id_animal',
+            'animais.nome as nome_animal',
+        )
+        ->join('animais', 'animais.id_animal', '=', 'adocao.id_animal')
+        ->paginate(5);
+
+        return view('admin/listagem_adocao', ['adocoes' => $adocoes]);
     }
 
     // public function getRacasByEspecie($id_especie)

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KBRTEC PETS</title>
 
-    <link rel="icon" type="image/x-icon" href="user/img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/user/img/favicon.ico">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
@@ -24,7 +24,7 @@
                 <div class="col-4">
                     <a href="{{ route('site.home') }}" title="KBR TEC" class="d-inline-block">
                         <h1>
-                            <img src="user/img/logo.webp" alt="KBR TEC" width="150">
+                            <img src="/user/img/logo.webp" alt="KBR TEC" width="150">
                         </h1>
                     </a>
                 </div>
@@ -154,7 +154,7 @@
 
                     <a href="#" class="btn btn-custom">Entre em contato</a>
                 </div>
-                <img src="user/img/cartoon-cat-3.webp" alt="Gato" width="150">
+                <img src="/user/img/cartoon-cat-3.webp" alt="Gato" width="150">
             </div>
         </div>
     </section>
@@ -167,7 +167,7 @@
                 </p>
 
                 <a href="https://www.kbrtec.com.br/" target="_blank" title="Acesse o site da KBR TEC">
-                    <img src="user/img/kbrtec.webp" alt="KBRTEC" width="100">
+                    <img src="/user/img/kbrtec.webp" alt="KBRTEC" width="100">
                 </a>
             </div>
         </div>

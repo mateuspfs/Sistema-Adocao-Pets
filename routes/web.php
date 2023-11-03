@@ -29,14 +29,16 @@ Route::get('/integra/{id_animal}', [SiteController::class, 'show'])->name('site.
 
 // Admin
 
-Route::get('admin/login', [AdminController::class, 'index'])->name('admin.login'); 
+Route::get('/login', [AdminController::class, 'index'])->name('admin.login'); 
 
 Route::get('admin/recuperar-senha', [AdminController::class, 'recuperar_senha'])->name('admin.recuperar-senha');
 
-Route::get('admin/listagem_adocao', [AdminController::class, 'listagem_adocao'])->name('admin.adocao');
+// Route::get('admin/listagem_adocao', [AdminController::class, 'listagem_adocao'])->name('admin.adocao');
 
 // Crud Animals
 
 Route::resource('animals', AnimalController::class);
+
+Route::get('adoçoes/', [AnimalController::class, 'showAdocao'])->name('admin.adocao');
 
 // Route::get('/api/get-racas-by-especie/{id_especie}', 'AnimalController@getRacasByEspecie');

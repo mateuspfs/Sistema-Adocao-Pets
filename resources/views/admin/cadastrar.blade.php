@@ -217,11 +217,11 @@
     <<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace('sobre', {
-        language: 'pt-br', // Defina o idioma (opcional)
+        language: 'pt-br', // Definir idioma
         contentsLangDirection: 'ltr', // Direção do idioma (ltr para esquerda para direita)
-        fullPage: true, // Certifique-se de que o CKEditor funcione com a página inteira
+        fullPage: true, // Habilitar funcionar página inteira
         entities: false, // Evita que o CKEditor converta entidades HTML
-    });
+        });
     </script>
     
     {{-- <script>
