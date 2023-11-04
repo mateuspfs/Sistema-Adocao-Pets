@@ -119,24 +119,13 @@
             </div>
 
             <div class="d-flex justify-content-between align-items-end mb-3">
-                <form action="" class="bg-custom rounded col-12 py-3 px-4">
+                <form action="{{ route('admin.filtersAdocao') }}" method="get" class="bg-custom rounded col-12 py-3 px-4">
                     
                     <div class="row align-items-end row-gap-4">
                         <div class="col-3 d-flex flex-wrap">
                             <label for="search" class="col-form-label">Buscar:</label>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-dark text-light border-dark" id="search" placeholder="Ex: Admin">
-                            </div>
-                        </div>
-    
-                        <div class="col-3 d-flex flex-wrap">
-                            <label for="status" class="col-form-label">Status:</label>
-                            <div class="col-12">
-                                <select name="status" class="form-control bg-dark text-light border-dark form-select" id="status">
-                                    <option value="" disabled selected>Selecione</option>
-                                    <option value="ativado">Ativado</option>
-                                    <option value="desativado">Desativado</option>
-                                </select>
+                                <input type="text" class="form-control bg-dark text-light border-dark" id="searchName" name="searchName" value="{{ isset($selectedFilters['searchName']) ? $selectedFilters['searchName'] : ' ' }}" placeholder="Ex: Admin">
                             </div>
                         </div>
     
@@ -145,12 +134,12 @@
     
                             <div class="col-6 d-flex gap-2">
                                 <label for="de" class="col-form-label">De:</label>
-                                <input type="text" class="form-control bg-dark text-light border-dark" id="de" placeholder="27/10/2023">
+                                <input type="text" class="form-control bg-dark text-light border-dark" id="data_initial" name="data_initial" value="{{ isset($selectedFilters['date_initial']) ? $selectedFilters['date_initial'] : ' ' }}" placeholder="27/10/2023">
                             </div>
     
                             <div class="col-6 d-flex gap-2">
                                 <label for="ate" class="col-form-label">Até:</label>
-                                <input type="text" class="form-control bg-dark text-light border-dark" id="ate" placeholder="27/10/2023">
+                                <input type="text" class="form-control bg-dark text-light border-dark" id="data_end" name="data_end" value="{{ isset($selectedFilters['date_end']) ? $selectedFilters['date_end'] : ' ' }}" placeholder="27/10/2023">
                             </div>
                         </div>
                         
@@ -177,8 +166,8 @@
 
                             @foreach ($adocoes as $adocao)
                            
-                            <td>{{ $adocao->nome_solicitante}}</td>
-                            <td>{{ $adocao->email_solicitante}}</td>
+                            <td>{{ $adocao->nome}}</td>
+                            <td>{{ $adocao->email}}</td>
                             <td><a style="color: rgb(64, 129, 48);" href="{{ route('site.integra', $adocao->id_animal) }}"> {{ $adocao->nome_animal }} </a></td>
                             <td>
                                 <div class="d-flex justify-content-center">

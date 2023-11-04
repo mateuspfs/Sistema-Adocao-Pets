@@ -56,7 +56,7 @@
 
             <p class="text-center">Preencha aqui os dados da pessoa interessada em adotar o animal selecionado:</p>
 
-            <form action="{{ route('site.formulario', $animal->id_animal) }}" class="bg-custom rounded p-4 mt-4 col-6 mx-auto row">
+            <form action="{{ route('submit.adocao') }}" class="bg-custom rounded p-4 mt-4 col-6 mx-auto row">
                 <div class="form-group py-2 col-12">
                     <label for="solicitante" class="text-capitalize text-light">Seu nome:</label>
                     <input type="text" class="form-control" name="solicitante" id="solicitante">

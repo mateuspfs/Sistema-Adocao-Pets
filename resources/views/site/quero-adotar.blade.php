@@ -46,14 +46,14 @@
                 <li class="breadcrumb-item fs-sm"><a href="{{ route('site.index') }}">Home</a></li>
                 <li class="breadcrumb-item active fs-sm" aria-current="page">Quero Adotar</li>
             </ol>
-        </div>
+        </div>                      
     </nav>
 
     <section>
         <div class="container-fluid">
             <div class="row">
                 <aside style="width: 320px;">
-                    <form method="" class="bg-custom rounded p-3 text-uppercase pt-4 mt-2 position-sticky" style="top: 1rem;">
+                    <form method="get" action=" {{ route('site.filterAnimals') }}" class="bg-custom rounded p-3 text-uppercase pt-4 mt-2 position-sticky" style="top: 1rem;">
                         <div class="mb-3 text-light bowlby-one">
                             Filtros
                         </div>
@@ -61,26 +61,35 @@
                         <div class="form-group py-2">
                             <label for="especie" class="text-capitalize text-light">Espécie</label>
                             <select name="especie" id="especie" class="form-control form-select">
-                                <option value="" selected disabled>Selecione</option>
+                                <option value="" disabled @if (empty($selectedFilters['especie'])) selected @endif>Selecione</option>
+                                @foreach ($especies as $especie)
+                                    <option value="{{ $especie->id_especie }}" @if ($selectedFilters['especie'] == $especie->id_especie) selected @endif>{{ $especie->nome }}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group py-2">
                             <label for="raca" class="text-capitalize text-light">Raça</label>
                             <select name="raca" id="raca" class="form-control form-select">
-                                <option value="" selected disabled>Selecione</option>
+                                <option value="" disabled @if (empty($selectedFilters['raca'])) selected @endif>Selecione</option>
+                                    @foreach ($racas as $raca)
+                                        <option value="{{ $raca->id_raca }}" @if ($selectedFilters['raca'] == $raca->id_raca) selected @endif>{{ $raca->nome }}</option>
+                                    @endforeach
                             </select>
                         </div>
 
                         <div class="form-group py-2">
                             <label for="local" class="text-capitalize text-light">Local</label>
-                            <input type="text" class="form-control" name="local" id="local" placeholder="Ex: São Paulo">
+                            <input type="text" class="form-control" name="endereco" id="local" placeholder="Ex: São Paulo" value="{{ isset($selectedFilters['endereco']) ? $selectedFilters['endereco'] : ' ' }}">
                         </div>
 
                         <div class="form-group py-2">
                             <label for="porte" class="text-capitalize text-light">Porte</label>
                             <select name="porte" id="porte" class="form-control form-select">
-                                <option value="" selected disabled>Selecione</option>
+                                <option value="" disabled @if (empty($selectedFilters['porte'])) selected @endif>Selecione</option>
+                                @foreach ($portes as $porte)
+                                    <option value="{{ $porte->id_porte }}" @if ($selectedFilters['porte'] == $porte->id_porte) selected @endif >{{ $porte->nome }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -89,12 +98,12 @@
                             
                             <div class="bg-light p-2 rounded d-flex flex-wrap row-gap-2">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="sexo" id="femea" value="">
+                                    <input class="form-check-input" type="radio" name="sexo" id="femea" value="1" @if ($selectedFilters['sexo'] == 1) checked @endif>
                                     <label class="form-check-label text-capitalize" for="femea">Fêmea</label>
                                 </div>
         
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="sexo" id="macho" value="">
+                                    <input class="form-check-input" type="radio" name="sexo" id="macho" value="2" @if ($selectedFilters['sexo'] == 2) checked @endif>
                                     <label class="form-check-label text-capitalize" for="macho">Macho</label>
                                 </div>
                             </div>

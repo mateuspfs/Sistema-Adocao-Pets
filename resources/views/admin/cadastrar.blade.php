@@ -119,6 +119,7 @@
                     </div>
                     <div class="col-sm-4">
                         <select class="form-select bg-dark text-light border-dark" id="unidade_tempo" name="unidade_tempo">
+                            <option value="" disabled selected>Selecione</option>
                             <option value="Dias">Dias</option>
                             <option value="Semanas">Semanas</option>
                             <option value="Meses">Meses</option>
@@ -134,6 +135,7 @@
                     </div>
                     <div class="col-sm-4">
                         <select class="form-select bg-dark text-light border-dark" id="unidade_medida" name="unidade_medida">
+                            <option value="" disabled selected>Selecione</option>
                             <option value="Gramas">Gramas</option>
                             <option value="Kg">Kg</option>
                         </select>
@@ -158,6 +160,7 @@
                     <label for="id_sexo" class="col-sm-2 col-form-label">Sexo:</label>
                     <div class="col-sm-10">
                         <select class="form-select bg-dark text-light border-dark" id="id_sexo" name="id_sexo">
+                            <option value="" disabled selected>Selecione</option>
                             @foreach ($sexos as $sexo)
                                 <option value="{{ $sexo->id_sexo }}">{{ $sexo->nome }}</option>
                             @endforeach
@@ -169,6 +172,7 @@
                     <label for="id_porte" class="col-sm-2 col-form-label">Porte:</label>
                     <div class="col-sm-10">
                         <select class="form-select bg-dark text-light border-dark" id="id_porte" name="id_porte">
+                            <option value="" disabled selected>Selecione</option>
                             @foreach ($portes as $porte)
                                 <option value="{{ $porte->id_porte }}">{{ $porte->nome }}</option>
                             @endforeach
@@ -180,6 +184,7 @@
                     <label for="id_especie" class="col-sm-2 col-form-label">Espécie:</label>
                     <div class="col-sm-10">
                         <select class="form-select bg-dark text-light border-dark" id="id_especie" name="id_especie">
+                            <option value="" disabled selected>Selecione</option>
                             @foreach ($especies as $especie)
                                 <option value="{{ $especie->id_especie }}">{{ $especie->nome }}</option>
                             @endforeach
@@ -191,9 +196,10 @@
                     <label for="id_raca" class="col-sm-2 col-form-label">Raça:</label>
                     <div class="col-sm-10">
                         <select class="form-select bg-dark text-light border-dark" id="id_raca" name="id_raca">
+                            <option value="" disabled selected>Selecione</option>
                             @foreach ($racas as $raca)
-                            <option value="{{ $raca->id_raca }}">{{ $raca->nome }}</option>
-                        @endforeach
+                                <option value="{{ $raca->id_raca }}">{{ $raca->nome }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

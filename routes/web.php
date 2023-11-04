@@ -39,6 +39,12 @@ Route::get('admin/recuperar-senha', [AdminController::class, 'recuperar_senha'])
 
 Route::resource('animals', AnimalController::class);
 
-Route::get('adoçoes/', [AnimalController::class, 'showAdocao'])->name('admin.adocao');
+Route::get('adoçoes/', [AdminController::class, 'showAdocao'])->name('admin.adocao');
 
-// Route::get('/api/get-racas-by-especie/{id_especie}', 'AnimalController@getRacasByEspecie');
+Route::post('form/', [SiteController::class, 'submitAdocao'])->name('submit.adocao');
+
+Route::get('/filterAnimals', [SiteController::class, 'filterAnimals'])->name('site.filterAnimals');
+
+Route::get('/filtersAdoçao', [AdminController::class, 'filtersAdocao'])->name('admin.filtersAdocao');
+
+Route::get('filterAnimals', [AnimalController::class, 'filtersAnimal'])->name('admin.filterAnimals');

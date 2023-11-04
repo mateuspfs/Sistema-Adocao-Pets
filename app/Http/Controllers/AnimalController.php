@@ -22,15 +22,22 @@ class AnimalController extends Controller
     
     public function index()
     {
-        $animals = Animal::select(
-            'animais.id_animal as id_animal',
-            'animais.nome as nome',
-            'status.nome as status',
-        )
-        ->join('status', 'animais.id_status', '=', 'status.id_status')
-        ->paginate(10);
+        $statuss = Status::all();
 
-        return view('admin/painel', ['animals' => $animals]);
+        $selectedFilters = [
+            'searchName' => '',
+            'status' => '',
+            'date_initial' => '',
+            'date_end' => '',
+        ];
+
+
+        $query = Animal::join('status', 'animais.id_status', '=', 'status.id_status')
+        ->select('animais.*', 'status.nome as status'); 
+
+        $animals = $query->paginate(10);
+
+        return view('admin/painel', compact('animals', 'statuss', 'selectedFilters'));
     }
 
     public function create()
@@ -123,26 +130,86 @@ class AnimalController extends Controller
         return redirect()->route('animals.index');
     }
 
-    public function showAdocao()
-    {    
-        $adocoes = Adocao::select(
-            'adocao.id_solicitante as id_solicitante',
-            'adocao.nome as nome_solicitante',
-            'adocao.email as email_solicitante',
-            'adocao.id_animal as id_animal',
-            'animais.nome as nome_animal',
-        )
-        ->join('animais', 'animais.id_animal', '=', 'adocao.id_animal')
-        ->paginate(5);
+    public function filtersAnimal(Request $request) 
+    {
+        $statuss = Status::all();
 
-        return view('admin/listagem_adocao', ['adocoes' => $adocoes]);
+        $searchName = $request->searchName;
+        $status = $request->status;
+        $date_initial = $request->date_initial;
+        $date_end = $request->date_end;
+
+        $selectedFilters = [
+            'searchName' => $searchName,
+            'status' => $status,
+            'date_initial' => $date_initial,
+            'date_end' => $date_end,
+        ];
+
+        // Iniciar a consulta 
+        $query = Animal::join('status', 'animais.id_status', '=', 'status.id_status')
+                    ->select('animais.*', 'status.nome as status');
+
+        // Aplicar filtros se eles foram fornecidos
+        if($searchName) {
+            $query->where('animais.nome', 'like', '%' . $searchName . '%');
+        }
+        if ($status) {
+            $query->where('animais.id_status', $status);
+        }
+        if ($date_initial && $date_end) {
+            $query->whereBetween('data_adocao', [$date_initial, $date_end]);
+        }
+        if ($date_initial && !$date_end) {
+            $query->where('created_at', '>=' . $date_initial);
+        }
+        if ($date_end) {
+            $query->where('created_at', '<=' .$date_end);
+        }
+    
+        // Ordenar os resultados
+        $query->orderBy('id_animal', 'desc');
+    
+        // Paginar os resultados
+        $animals = $query->paginate(10);
+
+        // Retornar a p[agina com os dados
+        return view('admin/painel', compact('animals', 'statuss', 'selectedFilters'));
+    } 
+
+    private function dadosCompletosAnimal($id_animal) {
+
+        $dadosAnimal = Animal::select(
+            'animais.id_animal as id_animal',
+            'animais.nome as nome',
+            'animais.idade as idade',
+            'animais.peso as peso',
+            'animais.sobre as sobre',
+            'animais.endereco as endereco',
+            'sexo.nome as sexo',
+            'status.nome as status',
+            'portes.nome as porte',
+            'racas.nome as raca',
+            'especies.nome as especie',
+            'imagens.nome as imagem'
+        )
+        ->join('status', 'animais.id_status', '=', 'status.id_status')
+        ->join('portes', 'animais.id_porte', '=', 'portes.id_porte')
+        ->join('sexo', 'animais.id_sexo', '=', 'sexo.id_sexo')
+        ->join('racas', 'animais.id_raca', '=', 'racas.id_raca')
+        ->join('especies', 'racas.id_especie', '=', 'especies.id_especie')
+        ->leftJoin('imagens_animal', 'animais.id_animal', '=', 'imagens_animal.id_animal')
+        ->leftJoin('imagens', 'imagens.id_img', '=', 'imagens_animal.id_img')
+        ->where('animais.id_animal', $id_animal)
+        ->get();
+        
+        // echo '<pre>';
+        // var_dump($dadosAnimal);
+        // echo '<pre>';
+        
+        if ($dadosAnimal->isNotEmpty()) {
+            return $dadosAnimal;
+        }
     }
 
-    // public function getRacasByEspecie($id_especie)
-    // {
-    //     $racas = Raca::where('id_especie', $id_especie)->get();
-
-    //     return response()->json($racas);
-    // }   
 }
-
