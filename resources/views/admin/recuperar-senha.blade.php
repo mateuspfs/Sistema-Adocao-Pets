@@ -1,5 +1,4 @@
-
-@extends('master');
+@extends('master')
 
 <!DOCTYPE html>
 <html lang="pt-br">

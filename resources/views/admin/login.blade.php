@@ -1,5 +1,10 @@
+@extends('master')
 
-@extends('master');
+@if($mensagem = Session::get('erro'))
+    <div class="alert alert-danger">
+        {{ $mensagem }}
+    </div>
+@endif
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,7 +19,7 @@
     <link href="{{ asset('css/style-admin.css') }}s" rel="stylesheet">
 </head>
 <body class="bg-dark">
-    <main class="py-5" style="min-height: calc(100vh - 72px);">
+    <main class="py-5" style="min-height: calc(100vh - 72px)">
         <div class="container">
             <div class="bg-custom mx-auto row col-8 rounded shadow-sm overflow-hidden">
                 <div class="col-6 bg-white p-5 d-flex align-items-center justify-content-center">
@@ -22,19 +27,19 @@
                 </div>
     
                 <div class="col-6 d-flex align-items-center p-5">
-                    <form action="{{ route('animals.index') }}" class="form w-100">
+                    <form action="{{ route('login.auth') }}" class="form w-100">
                         <h2 class="h4 text-light mb-4">Painel Administrativo</h2>
     
                         <div class="row row-gap-3">
                             <div class="col-12 form-group text-light">
                                 <label for="email">E-mail:</label>
-                                <input type="email" class="form-control bg-dark border-dark text-light" id="email" placeholder="example@kbrtec.com.br">
+                                <input type="email" class="form-control bg-dark border-dark text-light" id="email" name="email" placeholder="example@kbrtec.com.br">
                                 <!-- <small class="bg-danger rounded py-1 px-2 mt-1 d-block text-light">Erro</small> -->
                             </div>
     
                             <div class="col-12 form-group text-light">
                                 <label for="password">Senha:</label>
-                                <input type="password" class="form-control bg-dark border-dark text-light" id="password">
+                                <input type="password" class="form-control bg-dark border-dark text-light" id="password" name="password">
                                 <!-- <small class="bg-danger rounded py-1 px-2 mt-1 d-block text-light">Erro</small> -->
     
                                 <a href="{{ route('admin.recuperar-senha') }}" class="link-light"><small>Esqueci minha senha</small></a>

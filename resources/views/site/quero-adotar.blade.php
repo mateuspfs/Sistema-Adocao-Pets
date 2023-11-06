@@ -1,5 +1,4 @@
-
-@extends('master');
+@extends('master')
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -53,7 +52,7 @@
         <div class="container-fluid">
             <div class="row">
                 <aside style="width: 320px;">
-                    <form method="get" action=" {{ route('site.filterAnimals') }}" class="bg-custom rounded p-3 text-uppercase pt-4 mt-2 position-sticky" style="top: 1rem;">
+                    <form method="get" action="" class="bg-custom rounded p-3 text-uppercase pt-4 mt-2 position-sticky" style="top: 1rem;">
                         <div class="mb-3 text-light bowlby-one">
                             Filtros
                         </div>

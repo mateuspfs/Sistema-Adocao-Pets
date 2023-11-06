@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Adocao;
 use App\Models\Animal;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 use App\Models\Especie;
 use App\Models\Imagem;
 use App\Models\Imagem_Animal;
@@ -15,6 +13,7 @@ use App\Models\Sexo;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -94,55 +93,10 @@ class DatabaseSeeder extends Seeder
         // Inserir dados na tabela users
         User::insert([
             [
-                'nome' => 'João Silva', 
-                'email' => 'joao@email.com', 
-                'senha' => '123'
-            ],
-            [
-                'nome' => 'Maria Santos', 
-                'email' => 'maria@email.com', 
-                'senha' => '123'
-            ],
-            [
-                'nome' => 'Carlos Pereira', 
-                'email' => 'carlos@email.com', 
-                'senha' => '123'
-            ],
-            [
-                'nome' => 'Ana Oliveira', 
-                'email' => 'ana@email.com', 
-                'senha' => '123'
-            ],
-            [
-                'nome' => 'Pedro Rodrigues', 
-                'email' => 'pedro@email.com', 
-                'senha' => '123'
-            ],
-            [
-                'nome' => 'Lúcia Souza', 
-                'email' => 'lucia@email.com', 
-                'senha' => '123'
-            ],
-            [
-                'nome' => 'Fernando Costa', 
-                'email' => 'fernando@email.com', 
-                'senha' => '123'
-            ],
-            [
-                'nome' => 'Sofia Alves', 
-                'email' => 'sofia@email.com', 
-                'senha' => '123'
-            ],
-            [
-                'nome' => 'Miguel Pereira', 
-                'email' => 'miguel@email.com', 
-                'senha' => '123'
-            ],
-            [
-                'nome' => 'Isabela Santos', 
-                'email' => 'isabela@email.com', 
-                'senha' => '123'
-            ],
+                'nome' => 'Admin', 
+                'email' => 'admin@gmail.com',
+                'senha' => Hash::make('admin')
+            ]
         ]);
 
         // Inserir dados na tabela animais

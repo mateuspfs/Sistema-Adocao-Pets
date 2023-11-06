@@ -1,4 +1,14 @@
-@extends('master');
+@extends('master')
+
+@if($mensagem = Session::get('erro'))
+    <div class="alert alert-danger">
+        {{ $mensagem }}
+    </div>
+@elseif ($mensagem = Session::get('success'))
+    <div class="alert alert-danger">
+        {{ $mensagem }}
+    </div>   
+@endif
 
 <!DOCTYPE html>
 <html lang="pt-br">

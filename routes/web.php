@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SiteController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AnimalController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,26 +25,31 @@ Route::get('/quero-adotar', [SiteController::class, 'index'])->name('site.index'
 
 Route::get('/formulario/{id_animal}', [SiteController::class, 'formulario'])->name('site.formulario');
 
+Route::post('/formulario/submit', [SiteController::class, 'submitAdocao'])->name('submit.adocao');
+
 Route::get('/integra/{id_animal}', [SiteController::class, 'show'])->name('site.integra');
+
+Route::get('/filtersAnimal', [AnimalController::class, 'filtersAnimalSite'])->name('filtersAnimal');
 
 // Admin
 
-Route::get('/login', [AdminController::class, 'index'])->name('admin.login'); 
+Route::get('/login', function () {
+    return view('admin/login');
+})->name('admin.login'); 
 
-Route::get('admin/recuperar-senha', [AdminController::class, 'recuperar_senha'])->name('admin.recuperar-senha');
+Route::get('/recuperar-senha', [AdminController::class, 'recuperar_senha'])->name('admin.recuperar-senha');
 
-// Route::get('admin/listagem_adocao', [AdminController::class, 'listagem_adocao'])->name('admin.adocao');
+Route::get('/Auth', [LoginController::class, 'auth'])->name('login.auth');
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
 // Crud Animals
 
-Route::resource('animals', AnimalController::class);
+Route::resource('/animals', AnimalController::class)->middleware('auth');
 
-Route::get('adoçoes/', [AdminController::class, 'showAdocao'])->name('admin.adocao');
+Route::get('/adoções', [AdminController::class, 'showAdocao'])->name('admin.adocao')->middleware('auth');
 
-Route::post('form/', [SiteController::class, 'submitAdocao'])->name('submit.adocao');
+Route::get('/filtersAdoçao', [AdminController::class, 'filtersAdocao'])->name('admin.filtersAdocao')->middleware('auth');
 
-Route::get('/filterAnimals', [SiteController::class, 'filterAnimals'])->name('site.filterAnimals');
+Route::get('/filtersAnimal', [AnimalController::class, 'filtersAnimalAdmin'])->name('admin.filtersAnimal')->middleware('auth');
 
-Route::get('/filtersAdoçao', [AdminController::class, 'filtersAdocao'])->name('admin.filtersAdocao');
-
-Route::get('filterAnimals', [AnimalController::class, 'filtersAnimal'])->name('admin.filterAnimals');

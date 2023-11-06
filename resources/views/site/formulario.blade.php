@@ -1,4 +1,3 @@
-
 @extends('master');
 
 <!DOCTYPE html>
